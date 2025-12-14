@@ -30,17 +30,6 @@ from pathlib import Path
 
 load_dotenv()
 
-#output_path = r"C:/Users/Soumya Das/Documents/git_projects/Spotify_Insightsspotify_playlist_data.csv"
-
-
-CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
-CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
-REDIRECT_URI = os.getenv("SPOTIFY_REDIRECT_URI")
-
-
-print(CLIENT_ID,CLIENT_SECRET,REDIRECT_URI)
-
-
 def extract_playlist_id(link):
     return link.split("playlist/")[1].split("?")[0]
 
