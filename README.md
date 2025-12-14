@@ -9,7 +9,7 @@ The goal of this project is to write a script that fetch tracks from any Spotify
 **Spotipy**: lightweight Python library for the Spotify Web API. Spotipy you get full access to all of the music data provided by the Spotify platform.  
 **load_dotenv**: is a helper function from the python-dotenv package.It loads environment variables from a ```.env``` file into your Python program so you don’t hard-code secrets like API keys.  
 **SpotifyOAuth**: allows your script to log in to Spotify, get an access token, refresh it, and make API calls without you doing the low-level OAuth work.  
-**os**:
+**os**:  
 **csv**:
 
 
