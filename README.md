@@ -6,8 +6,8 @@ The goal of this project is to write a script that fetch tracks from any Spotify
 
 ## Libraries  
 
-**Spotipy**: lightweight Python library for the Spotify Web API. Spotipy you get full access to all of the music data provided by the Spotify platform.
-**load_dotenv**:
+**Spotipy**: lightweight Python library for the Spotify Web API. Spotipy you get full access to all of the music data provided by the Spotify platform.  
+**load_dotenv**:  
 **SpotifyOAuth**:
 
 
