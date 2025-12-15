@@ -17,13 +17,21 @@ The goal of this project is to write a script that fetch tracks from any Spotify
 1. create a git repo.
 2. create a virtual environment. where you download the packages.
 3. create an account in spotify using google account or facebook or other personal email.
-4. sign into spotify developers dashboard: https://developer.spotify.com/dashboard
+4. sign into spotify developers dashboard: https://developer.spotify.com/dashboard .
 5. create an app ->  
   <img width="912" height="691" alt="image" src="https://github.com/user-attachments/assets/15f9d657-044f-456d-b539-6783b5b743eb" />
-  <img width="917" height="762" alt="image" src="https://github.com/user-attachments/assets/4eddaaca-d1da-43cb-bb35-57a9e34b534d" />
-6. create an ```.env``` file to store the client id,secrets and redirect uri and call them -> while function call without hard-coding them.
-7. create a ```.gitignore``` file so as to skip some files like ```.env``` and the downloaded text,so that the secrets aren't exposed and the dataset doesn't make it heavy.
-8. 
+  <img width="917" height="762" alt="image" src="https://github.com/user-attachments/assets/4eddaaca-d1da-43cb-bb35-57a9e34b534d" />  
+6. create an ```.env``` file to store the client id,secrets and redirect uri and call them -> while function call without hard-coding them.  
+7. create a ```.gitignore``` file so as to skip some files like ```.env``` and the downloaded text,so that the secrets aren't exposed and the dataset doesn't make it heavy on repo.  
+8.  create a src folder to keep the source code : playlist_downloader.py and a data folder as a destination where the dataset will be downloaded. Folder structure:
+```
+ Spotify_Insights/
+├── .env
+├── src/
+└── data/
+
+```    
+   
 
    
 
