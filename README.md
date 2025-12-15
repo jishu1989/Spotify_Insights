@@ -34,7 +34,24 @@ The goal of this project is to write a script that fetch tracks from any Spotify
 └── data/
 
 ```    
-## Code Walk through
+## Code Walk through  
+
+The main function calls the function ```fetch_playlist_to_csv()```, which calls the function ```extract_playlist_id()```. The ```extract_playlist_id()``` function extracts the playlist_id from the url.
+Good to mention, we are passing a playlist url link from the main function which was considered as a testcase before hand. ```split()``` function breaks the url into smaller substrings.
+
+```
+playlist_id=playlist_url.split("playlist/")[1].split("?")[0]
+
+print(playlist_id)
+
+2km2nHDVADmnQMhQRaTOEL
+```
+
+```.split("playlist/")[1]``` : breaks the url into a list of two elements, and selects the later element  -> ```['https://open.spotify.com/', '2km2nHDVADmnQMhQRaTOEL?si=fMi8UPf6QLqvhsTn_2mdwA']```. 
+```.split("?")[0]``` function selects everything before question mark with the above logic.
+
+
+## Data Description
 
 
 
