@@ -1,25 +1,24 @@
 import os
-from dotenv import load_dotenv
-import spotipy
-from spotipy.oauth2 import SpotifyOAuth
 import csv
 from pathlib import Path
 
+import spotipy
+from dotenv import load_dotenv
+from spotipy.oauth2 import SpotifyClientCredentials
+# from spotipy.oauth2 import SpotifyOAuth  # optional
+
 load_dotenv()
-
-#output_path = r"C:/Users/Soumya Das/Documents/git_projects/Spotify_Insightsspotify_playlist_data.csv"
-
 
 CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
 CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
 REDIRECT_URI = os.getenv("SPOTIFY_REDIRECT_URI")
 
-
-print(CLIENT_ID,CLIENT_SECRET,REDIRECT_URI)
+print(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
 
 
 def extract_playlist_id(link):
     return link.split("playlist/")[1].split("?")[0]
+
 
 def fetch_playlist_to_csv(playlist_input, output_csv):
     playlist_id = extract_playlist_id(playlist_input)
@@ -31,15 +30,15 @@ def fetch_playlist_to_csv(playlist_input, output_csv):
 
     output_path = data_dir / output_csv
 
+    # ---- Spotify Authentication (Client Credentials) ----
     sp = spotipy.Spotify(
-        auth_manager=SpotifyOAuth(
+        auth_manager=SpotifyClientCredentials(
             client_id=CLIENT_ID,
-            client_secret=CLIENT_SECRET,
-            redirect_uri=REDIRECT_URI,
-            scope="playlist-read-private playlist-read-collaborative"
+            client_secret=CLIENT_SECRET
         )
     )
 
+    # ---- Fetch playlist tracks ----
     results = sp.playlist_items(playlist_id, additional_types=["track"])
     tracks = results["items"]
 
@@ -47,7 +46,7 @@ def fetch_playlist_to_csv(playlist_input, output_csv):
         results = sp.next(results)
         tracks.extend(results["items"])
 
-    # Open CSV file
+    # ---- Write to CSV ----
     with open(output_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
             f,
