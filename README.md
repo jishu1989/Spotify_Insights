@@ -12,10 +12,18 @@ The goal of this project is to write a script that fetch tracks from any Spotify
 **os**:  
 **csv**:
 
-
 ## Steps:
 
-1. Create a git repo.
-2. create a virtual environment. where you download the packages
-3. create an account
+1. create a git repo.
+2. create a virtual environment. where you download the packages.
+3. create an account in spotify using google account or facebook or other personal email.
+4. sign into spotify developers dashboard: https://developer.spotify.com/dashboard
+5. create an app ->  
+   <img width="912" height="691" alt="image" src="https://github.com/user-attachments/assets/15f9d657-044f-456d-b539-6783b5b743eb" />
+   <img width="917" height="762" alt="image" src="https://github.com/user-attachments/assets/d205317a-8a2b-4e03-8952-7c03d321df4f" />  
+6. create an ```.env``` file to store the client id,secrets and redirect uri and call them -> while function call without hard-coding them.
+7. 
+
+   
+
 
