@@ -24,6 +24,7 @@ The goal of this project is to write a script that fetch tracks from any Spotify
 6. create an ```.env``` file to store the client id,secrets and redirect uri and call them -> while function call without hard-coding them.  
 7. create a ```.gitignore``` file so as to skip some files like ```.env``` and the downloaded text,so that the secrets aren't exposed and the dataset doesn't make it heavy on repo.  
 8.  create a src folder to keep the source code : playlist_downloader.py and a data folder as a destination where the dataset will be downloaded. Folder structure:
+
 ```
  Spotify_Insights/
 ├── .env
