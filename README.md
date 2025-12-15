@@ -10,9 +10,10 @@ The goal of this project is to write a script that fetch tracks from any Spotify
 **load_dotenv**: is a helper function from the python-dotenv package.It loads environment variables from a ```.env``` file into your Python program so you don’t hard-code secrets like API keys.  
 **SpotifyOAuth**: allows your script to log in to Spotify, get an access token, refresh it, and make API calls without you doing the low-level OAuth work.  
 **os**:  os is used to read environment variables and run os level commands. here we used it to get secrets safely.  
-**csv**: to save ```.csv``` files, write data to -> ```.csv``` file.
+**csv**: to save ```.csv``` files, write data to -> ```.csv``` file.  
+**Path**: a python library to work with file paths.
 
-## Steps:
+## Steps
 
 1. create a git repo.
 2. create a virtual environment. where you download the packages.
@@ -33,7 +34,9 @@ The goal of this project is to write a script that fetch tracks from any Spotify
 └── data/
 
 ```    
-   
+## Code Walk through
+
+
 
    
 
