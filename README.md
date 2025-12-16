@@ -74,7 +74,7 @@ Path location where the .csv data file will be dropped.
 
     #the function fetch_playlist_to_csv(playlist_url, "spotify_playlist_data.csv") feeds the output_csv value:  
 
-    output_path = data_dir / output_csv -----> 
+    output_path = data_dir / output_csv -----> C:\Users\Soumya Das\Documents\git_projects\Spotify_Insights\data\spotify_playlist_data.csv
 ```
 
 
