@@ -5,38 +5,32 @@ from pathlib import Path
 import spotipy
 from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyClientCredentials
+# from spotipy.oauth2 import SpotifyOAuth  # optional
 
-# Load .env for local development (safe in GitHub Actions – it just does nothing)
 load_dotenv()
 
-# ---- Load credentials (support both naming conventions) ----
-CLIENT_ID = os.getenv("SPOTIPY_CLIENT_ID") or os.getenv("SPOTIFY_CLIENT_ID")
-CLIENT_SECRET = os.getenv("SPOTIPY_CLIENT_SECRET") or os.getenv("SPOTIFY_CLIENT_SECRET")
+CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
+CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
+REDIRECT_URI = os.getenv("SPOTIFY_REDIRECT_URI")
 
-# ---- Fail fast if credentials are missing ----
-if not CLIENT_ID or not CLIENT_SECRET:
-    raise RuntimeError(
-        "Spotify credentials not found.\n"
-        "Set SPOTIPY_CLIENT_ID and SPOTIPY_CLIENT_SECRET as environment variables."
-    )
+print(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
 
 
-def extract_playlist_id(playlist_url: str) -> str:
-    """Extract playlist ID from Spotify playlist URL."""
-    return playlist_url.split("playlist/")[1].split("?")[0]
+def extract_playlist_id(link):
+    return link.split("playlist/")[1].split("?")[0]
 
 
-def fetch_playlist_to_csv(playlist_url: str, output_csv: str) -> None:
-    playlist_id = extract_playlist_id(playlist_url)
+def fetch_playlist_to_csv(playlist_input, output_csv):
+    playlist_id = extract_playlist_id(playlist_input)
 
-    # Resolve project root → data folder
+    # Resolve repo root → data folder
     base_dir = Path(__file__).resolve().parent.parent
     data_dir = base_dir / "data"
     data_dir.mkdir(exist_ok=True)
 
     output_path = data_dir / output_csv
 
-    # ---- Spotify client (Client Credentials flow) ----
+    # ---- Spotify Authentication (Client Credentials) ----
     sp = spotipy.Spotify(
         auth_manager=SpotifyClientCredentials(
             client_id=CLIENT_ID,
@@ -44,7 +38,7 @@ def fetch_playlist_to_csv(playlist_url: str, output_csv: str) -> None:
         )
     )
 
-    # ---- Fetch playlist items (pagination-safe) ----
+    # ---- Fetch playlist tracks ----
     results = sp.playlist_items(playlist_id, additional_types=["track"])
     tracks = results["items"]
 
@@ -52,10 +46,10 @@ def fetch_playlist_to_csv(playlist_url: str, output_csv: str) -> None:
         results = sp.next(results)
         tracks.extend(results["items"])
 
-    # ---- Write results to CSV ----
-    with open(output_path, "w", newline="", encoding="utf-8") as file:
+    # ---- Write to CSV ----
+    with open(output_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
-            file,
+            f,
             fieldnames=[
                 "track_name",
                 "artists",
@@ -69,13 +63,13 @@ def fetch_playlist_to_csv(playlist_url: str, output_csv: str) -> None:
         writer.writeheader()
 
         for item in tracks:
-            track = item.get("track")
+            track = item["track"]
             if not track:
                 continue
 
             writer.writerow({
                 "track_name": track["name"],
-                "artists": ", ".join(artist["name"] for artist in track["artists"]),
+                "artists": ", ".join(a["name"] for a in track["artists"]),
                 "album": track["album"]["name"],
                 "release_date": track["album"]["release_date"],
                 "duration_ms": track["duration_ms"],
