@@ -119,6 +119,23 @@ while results["next"]:  ----> checks whether there is a next page..
 **Writing to .csv file:**
 
 
+```
+    with open(output_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(
+            f,
+            fieldnames=[
+                "track_name",
+                "artists",
+                "album",
+                "release_date",
+                "duration_ms",
+                "popularity",
+                "track_id"
+            ] ----> one single row to the file : the header : write rows where each row is a dictionary
+        )
+        writer.writeheader() ----> this writes the header row
+
+```
 
 ## Data Description  
 
