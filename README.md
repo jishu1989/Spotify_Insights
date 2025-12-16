@@ -54,7 +54,9 @@ print(playlist_id)
 ```
 
 ```.split("playlist/")[1]``` : breaks the url into a list of two elements, and selects the later element  -> ```['https://open.spotify.com/', '2km2nHDVADmnQMhQRaTOEL?si=fMi8UPf6QLqvhsTn_2mdwA']```. 
-```.split("?")[0]``` function selects everything before question mark with the above logic.
+```.split("?")[0]``` function selects everything before question mark with the above logic.  
+
+
 
 
 
