@@ -80,6 +80,20 @@ Path location where the .csv data file will be dropped.
 
 **Authenticating Spotify API:**  
 
+This entire part is like logging the program into spotify and request playlist, tracks and audio features.
+```
+sp = spotipy.Spotify(  #creates a spotify client and store it in a variable called sp
+        auth_manager=SpotifyClientCredentials(  #use the client credentials method to authenticate.
+            client_id=CLIENT_ID,                #who are you?
+            client_secret=CLIENT_SECRET         #who its really you?
+        )
+    )
+```
+Major takeaways:  
+- Spotipy requests an access token from Spotify
+- Spotify checks your credentials
+- Spotify says: “Okay, you’re allowed”
+
 **Fetching Playlist tracks:**  
 
 **Writing to .csv file:**
