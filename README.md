@@ -98,8 +98,9 @@ Major takeaways:
 
 ```
 # ---- Fetch playlist tracks ----
-results = sp.playlist_items(playlist_id, additional_types=["track"]) ------> first batch of items from the playlist, returns 100 tracks,
-info about pagination and since additional types = track, we only get SONGS not podcasts or episodes. 
+results = sp.playlist_items(playlist_id, additional_types=["track"]) ------> first batch of items from the playlist,
+returns 100 tracks, info about pagination and since additional types = track,
+we only get SONGS not podcasts or episodes. 
 
 #print(results)
 
