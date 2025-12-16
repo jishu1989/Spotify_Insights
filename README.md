@@ -33,6 +33,7 @@ The goal of this project is to write a script that fetch tracks from any Spotify
 ├── src/
 │   └── playlist_downloader.py
 └── data/
+      └── spotify_playlist_data.csv
 ├── requirements.txt
 └── .github/
     └── workflows/
