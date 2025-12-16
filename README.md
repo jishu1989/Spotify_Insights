@@ -77,12 +77,13 @@ Path location where the .csv data file will be dropped.
     output_path = data_dir / output_csv -----> C:\Users\Soumya Das\Documents\git_projects\Spotify_Insights\data\spotify_playlist_data.csv
 ```
 
+**Authenticating Spotify API:**
 
 
 
+## Data Description  
 
 
-## Data Description
 
 ## GH Actions
 
