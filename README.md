@@ -42,6 +42,8 @@ The goal of this project is to write a script that fetch tracks from any Spotify
 9. automate the process using github actions.
 ## Code Walk through  
 
+**Function Calls:**
+
 The main function calls the function ```fetch_playlist_to_csv()```, which calls the function ```extract_playlist_id()```. The ```extract_playlist_id()``` function extracts the playlist_id from the url.
 Good to mention, we are passing a playlist url link from the main function which was considered as a testcase before hand. ```split()``` function breaks the url into smaller substrings.
 
@@ -55,6 +57,25 @@ print(playlist_id)
 
 ```.split("playlist/")[1]``` : breaks the url into a list of two elements, and selects the later element  -> ```['https://open.spotify.com/', '2km2nHDVADmnQMhQRaTOEL?si=fMi8UPf6QLqvhsTn_2mdwA']```. 
 ```.split("?")[0]``` function selects everything before question mark with the above logic.  
+
+**Data Path Location:**  
+
+Path location where the .csv data file will be dropped.
+
+```
+    base_dir = Path(__file__).resolve().parent.parent
+    print(base_dir) ---> C:\Users\Soumya Das\Documents\git_projects\Spotify_Insights
+    
+    data_dir = base_dir / "data"
+
+    print(data_dir) ----> C:\Users\Soumya Das\Documents\git_projects\Spotify_Insights\data
+    
+    data_dir.mkdir(exist_ok=True) --->  if the directory doesn't exists
+
+    #the function fetch_playlist_to_csv(playlist_url, "spotify_playlist_data.csv") feeds the output_csv value:  
+
+    output_path = data_dir / output_csv -----> 
+```
 
 
 
