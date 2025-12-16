@@ -41,7 +41,7 @@ The goal of this project is to write a script that fetch tracks from any Spotify
 
 ```  
 9. automate the process using github actions.
-## Code Walk through  
+## Script Walk through  
 
 **Function Calls:**
 
@@ -95,6 +95,25 @@ Major takeaways:
 - Spotify says: “Okay, you’re allowed”
 
 **Fetching Playlist tracks:**  
+
+```
+# ---- Fetch playlist tracks ----
+results = sp.playlist_items(playlist_id, additional_types=["track"]) ------> first batch of items from the playlist, returns 100 tracks,
+info about pagination and since additional types = track, we only get SONGS not podcasts or episodes. 
+
+#print(results)
+
+tracks = results["items"] -----> list of tracks and stores them.
+
+#print(tracks)
+
+while results["next"]:  ----> checks whether there is a next page..
+    results = sp.next(results) ----> next page of the tracks
+    print(results)
+    tracks.extend(results["items"]) ----> takes the new tracks from the next page and adds them to the existing list
+    print(tracks)
+
+```
 
 **Writing to .csv file:**
 
