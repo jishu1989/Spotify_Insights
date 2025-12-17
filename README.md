@@ -136,6 +136,81 @@ while results["next"]:  ----> checks whether there is a next page..
         writer.writeheader() ----> this writes the header row
 
 ```
+to print the data from dictionary to a structured dataset, which can be later into `.csv` file : 
+
+```
+import sys
+import csv
+
+writer = csv.DictWriter(
+    sys.stdout,
+    fieldnames=[
+        "track_name",
+        "artists",
+        "album",
+        "release_date",
+        "duration_ms",
+        "popularity",
+        "track_id"
+    ]
+)
+
+writer.writeheader()
+
+for item in track:
+    track = item["track"]
+    if not track:
+        continue
+
+    writer.writerow({
+        "track_name": track["name"],
+        "artists": ", ".join(a["name"] for a in track["artists"]),
+        "album": track["album"]["name"],
+        "release_date": track["album"]["release_date"],
+        "duration_ms": track["duration_ms"],
+        "popularity": track["popularity"],
+        "track_id": track["id"]
+    })
+```
+the output prints the following dataset:
+
+```
+track_name,artists,album,release_date,duration_ms,popularity,track_id
+Arms Of Heaven,"Talla 2XLC, Sunbeam",Arms Of Heaven,2024-08-09,238285,21,4n86PTgHwwOIrwKkWLSQqf
+Trifecta,"Cosmic Gate, Arnej",Trifecta,2024-08-09,234471,39,1v8ey9429Z5ulObgHhYcqF
+Half Light,"Ben Gold, Bo Bruce",Half Light,2024-08-09,229622,41,4SFnsEwWLkBS44EJdNOkj9
+High Wire,"Roman Messer, ThoBa, Veronica Bravo",High Wire,2024-08-09,187934,16,4bZEQhttzKR5Bpt5KOcC2c
+The Love You Give (ASOT 1185) - AK Statement Remix,"Alex Kunnari, Christina Novelli",ASOT 1185 - A State of Trance Episode 1185 [Including Live at Tomorrowland 2024 (Highlights)],2024-08-08,236510,4,2Sdj0ahVSmepLXKOBmwUVP
+Slow Motion,"Rene Ablaze, AFTERUS",Slow Motion,2024-08-09,206534,20,2WWhH1fFOwqeZafWatxXZi
+Thunderbolt,"RAM, Richard Durand, Digital Culture",Thunderbolt,2024-08-16,216857,20,71nTd2HsRPfulwXkFlRWuM
+Daylight,"DJ Dean, Danny Fervent",Daylight,2024-08-02,225230,0,4KLteihFI7YJZCzLJnXmNo
+Count On Me (ASOT 1186),"Aly & Fila, Philippe El Sisi, Omar Sherif, Jaren","ASOT 1186 - A State of Trance Episode 1186 [Including A State of Trance, Ibiza 2024 (Mix 3: Who's Afraid of 138?!)]",2024-08-15,273920,13,34vvMTbti2O0fR9mX6Ct9A
+Say Something,"Ciaran McAuley, Christina Novelli",Say Something,2024-08-16,190964,31,0ryaHEkXnKDLNdnRDrvtUk
+Thinking of You,Solarstone,Thinking of You,2024-08-07,202714,14,4fGYcqTM8aBhtXU7yIxtcO
+Photographs,Kyau & Albert,Photographs,2024-08-06,161483,12,7wny4eDKuCN4Ynn6BvAOAW
+Leonie - Torsten Stenzel Remix,"Dj T.H., Torsten Stenzel",Leonie (Torsten Stenzel Remix),2024-08-09,179000,12,3FPHJAFHl0weYNrRnqJA41
+Zorn,Niconé,"Triation, Vol. IX",2024-08-09,403278,14,1S5GUzPQZeL1yvRhya36j9
+Echoes,"Einmusik, Jordan Arts",Echoes,2024-08-16,295283,22,064zQysCLTlbcdrngwbI6i
+Alive,"Driftmoon, Sarah Howells",Alive,2024-08-16,227363,11,3jnkgleUmAKwIR9k4m9G8R
+Don't Stop,Robert Babicz,Kelch 14,2024-08-09,296689,2,4hXapk3xMtF1xub69xTBAv
+Future Memories,"Estiva, Lake Avalon",Future Memories,2024-08-09,203902,32,5bD2vf35NLtUphipbcxdFL
+The Realm of Imagination,"Push, Rebel Boy",The Realm of Imagination,2024-08-09,270666,16,7BxDrmXVB5XQf0pgNNIM1D
+Happening - Dirty Doering Remix Edit,"Pretty Pink, Dirty Doering",Happening (Dirty Doering Remix Edit),2024-08-16,264239,20,23ND4N8q53VYT0smVmlavS
+Nightflight,YORK,Nightflight,2024-08-16,198857,0,4UUSilN9d6AFhmy26ff6KC
+Esperanza,"Mauro Picotto, Frankyeffe",Esperanza,2024-08-09,222857,17,6nLdrOmfkhOvn2BxRBF6lz
+Adventure Awaits,"Roger Shah, Yelow",Adventure Awaits,2024-08-16,217391,31,0T79ekqISgzmMHr52H46Wz
+Manray (GDJB Weekly Drive 33),"Markus Schulz, Dakota",Global DJ Broadcast Weekly Drive 33,2024-08-15,227343,4,19wvvVPtC7PRYJtwUY7r26
+My Head,"RAVEKINGS, Diabllo",My Head,2024-08-09,159807,37,7j22od1gIbsynOKNf8kJP9
+Love Seeking - Âme Remix Edit,"Mind Against, Âme",Love Seeking - Âme Remix,2024-08-09,249466,19,5cMC0L8fGfM8PwCjKQd14V
+Sunlight,"Eximinds, Eldream",Sunlight,2024-08-09,290639,3,4yvG4pwLLyyvkBchS7RaYN
+Devotion - Cold Blue Remix,"John O'Callaghan, Alex Holmes, Cold Blue",Devotion (Cold Blue Remix),2024-08-16,252857,13,64UMLSAaJnMCw0M74nrWev
+Final Fight,Cosmic Boys,Final Fight,2024-08-09,174705,25,6VgTjGZqEKbcO2hL1XecvU
+Escape,"Van Der Karsten, Airwalk3r",Escape,2024-08-16,166956,36,4S2hhb5EKBmlBU7cFigCJS
+Bells of Kakariko,Oliver Koletzki,Bells of Kakariko,2024-08-16,409112,20,70wp7eGnmV4mCTg1f6u9n6
+Guide Me Home,Laura van Dam,Guide Me Home,2024-07-26,210714,25,78VAm5dA0hs5sl77KOEMv8
+Subjekt,"Allen Watts, AWaken",Subjekt,2024-08-16,188449,14,1pFarz73OQPxi4sP9fpbBy
+```
+
 
 ## Data Description  
 
