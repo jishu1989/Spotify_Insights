@@ -220,6 +220,7 @@ The columns are as follows : **track_name,artists,album,release_date,duration_ms
 
 ## GH Actions
 
+Finally we try to automate the process using Github actions. For which we create a `.yaml` file inserting the cron instructions.
    
 
 
