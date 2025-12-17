@@ -109,12 +109,13 @@ tracks = results["items"] -----> list of tracks and stores them.
 #print(tracks)
 
 while results["next"]:  ----> checks whether there is a next page..
-    results = sp.next(results) ----> next page of the tracks
+    results = sp.next(results) ----> next page of the tracks = this is a dict
     print(results)
     tracks.extend(results["items"]) ----> takes the new tracks from the next page and adds them to the existing list
     print(tracks)
 
 ```
+note: `extend()` function used with lists to add multiple elements from another iterable(list, tuple,string) to the end of the list.
 
 **Writing to .csv file:**
 
