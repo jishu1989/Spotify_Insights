@@ -220,7 +220,54 @@ The columns are as follows : **track_name,artists,album,release_date,duration_ms
 
 ## GH Actions
 
-Finally we try to automate the process using Github actions. For which we create a `.yaml` file inserting the cron instructions.
-   
+Finally we try to automate the process using Github actions. For which we create a `.yaml` file inserting the cron instructions.  
+
+Github cron has five fields:
+
+```
+┌──────── minute (0–59)
+│ ┌────── hour (0–23)
+│ │ ┌──── day of month (1–31)
+│ │ │ ┌── month (1–12)
+│ │ │ │ ┌ day of week (0–6) (Sun=0)
+│ │ │ │ │
+│ │ │ │ │
+0 * * * *
+
+```
+In our case the cron runs every Monday at 00:00 ---> 
+```
+ schedule:
+    - cron: "0 0 * * 1"     # every Monday at 00:00 UTC
+```
+github creates a ubuntu machine and runs everything inside it :
+
+```
+    runs-on: ubuntu-latest
+
+```
+each step is executed from top --> to bottom , sequentially. Python version 3.12 is installed and pip is used
+to install the dependencies from the text file `requirements.txt` :  
+
+```
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
 
+```
+We also have stored our env variables secrets(client_id,client_secret and redirect_url) in github secrets: Settings → Secrets and variables → Actions → New repository secret. 
+
+```
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REDIRECT_URI: ${{ secrets.SPOTIFY_REDIRECT_URI }}
+
+```
