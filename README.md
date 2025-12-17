@@ -172,6 +172,11 @@ for item in track:
         "track_id": track["id"]
     })
 ```
+
+
+
+## Data Description  
+
 the output prints the following dataset:
 
 ```
@@ -211,10 +216,7 @@ Guide Me Home,Laura van Dam,Guide Me Home,2024-07-26,210714,25,78VAm5dA0hs5sl77K
 Subjekt,"Allen Watts, AWaken",Subjekt,2024-08-16,188449,14,1pFarz73OQPxi4sP9fpbBy
 ```
 
-
-## Data Description  
-
-
+The columns are as follows : **track_name,artists,album,release_date,duration_ms,popularity,track_id**. 
 
 ## GH Actions
 
